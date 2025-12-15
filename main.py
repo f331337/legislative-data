@@ -16,8 +16,18 @@ def main() -> None:
     processor.get_bills(str(data_dir / "bills.csv"))
     processor.get_vote_results(str(data_dir / "vote_results.csv"))
 
-    legislator_stats = processor.compute_legislator_stats()
-    bill_stats = processor.compute_bill_stats()
+    legislators_report = processor.generate_legislators_report()
+    bills_report = processor.generate_bills_report()
+
+    write_dicts_to_csv(
+        output_dir / "legislators-support-oppose-count.csv",
+        legislators_report,
+    )
+
+    write_dicts_to_csv(
+        output_dir / "bills-support-oppose-count.csv",
+        bills_report,
+    )
 
 
 if __name__ == "__main__":

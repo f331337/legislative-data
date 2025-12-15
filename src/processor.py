@@ -21,8 +21,8 @@ class ProcessorData:
         self.bills = {
             int(row["id"]): {
                 "title": row["title"],
-                "primary_sponsor": int(row["primary_sponsor"])
-                if row.get("primary_sponsor") and row["primary_sponsor"].isdigit()
+                "sponsor_id": int(row["sponsor_id"])
+                if row.get("sponsor_id") and row["sponsor_id"].isdigit()
                 else None,
             }
             for row in raw_data
@@ -81,7 +81,7 @@ class ProcessorData:
         rows = []
 
         for bill_id, bill in self.bills.items():
-            sponsor_id = bill["primary_sponsor"]
+            sponsor_id = bill["sponsor_id"]
             sponsor_name = self.legislators.get(sponsor_id, "Unknown")
 
             rows.append(
