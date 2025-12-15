@@ -25,7 +25,7 @@ def main() -> None:
     )
 
     write_dicts_to_csv(
-        output_dir / "bills-support-oppose-count.csv",
+        output_dir / "bills.csv",
         bills_report,
     )
     print(f"files saves in {output_dir}")

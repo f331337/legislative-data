@@ -5,7 +5,7 @@ reports for legislators and bills based on voting results.
 
 ## Requirements
 
-- Python **3.10+**
+- Python **3.9.6+**
 - No external dependencies
 
 ## Running the Application
@@ -20,3 +20,6 @@ python3 main.py
 ```bash
 python3 -m unittest discover -s src/tests -t src -p "test_*.py"
 ```
+
+## Output
+Generated files saved in output/ folder
