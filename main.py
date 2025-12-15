@@ -28,6 +28,7 @@ def main() -> None:
         output_dir / "bills-support-oppose-count.csv",
         bills_report,
     )
+    print(f"files saves in {output_dir}")
 
 
 if __name__ == "__main__":
