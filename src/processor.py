@@ -1,4 +1,4 @@
-from persistence.readers import load_csv
+from .persistence.readers import load_csv
 
 
 class ProcessorData:
@@ -62,3 +62,36 @@ class ProcessorData:
                 stats[bill_id]["opposers"] += 1
 
         return stats
+
+    def generate_legislators_report(self) -> list[dict]:
+        stats = self.compute_legislator_stats()
+
+        return [
+            {
+                "id": legislator_id,
+                "name": name,
+                "num_supported_bills": stats[legislator_id]["supported"],
+                "num_opposed_bills": stats[legislator_id]["opposed"],
+            }
+            for legislator_id, name in self.legislators.items()
+        ]
+
+    def generate_bills_report(self) -> list[dict]:
+        stats = self.compute_bill_stats()
+        rows = []
+
+        for bill_id, bill in self.bills.items():
+            sponsor_id = bill["primary_sponsor"]
+            sponsor_name = self.legislators.get(sponsor_id, "Unknown")
+
+            rows.append(
+                {
+                    "id": bill_id,
+                    "title": bill["title"],
+                    "supporter_count": stats[bill_id]["supporters"],
+                    "opposer_count": stats[bill_id]["opposers"],
+                    "primary_sponsor": sponsor_name,
+                }
+            )
+
+        return rows
