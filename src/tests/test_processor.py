@@ -39,6 +39,6 @@ class ProcessorDataTests(unittest.TestCase):
         processor = ProcessorData()
         processor.get_bills(str(DATA_DIR / "bills.csv"))
 
-        self.assertTrue(
-            all(info["primary_sponsor"] is None for info in processor.bills.values())
+        self.assertListEqual(
+            [412211, 400100], [info["sponsor_id"] for info in processor.bills.values()]
         )

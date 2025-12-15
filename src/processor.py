@@ -1,4 +1,4 @@
-from .persistence.readers import load_csv
+from src.persistence.readers import load_csv
 
 
 class ProcessorData:
